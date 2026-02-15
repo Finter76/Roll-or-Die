@@ -1,0 +1,348 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY & TESTO
+========================= */
+
+body {
+    font-family: Verdana, Arial, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    text-align: center;
+    min-height: 100vh;
+    overflow: hidden; /* Fisso */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1, h2, h3 {
+    color: #d4af37;
+    margin: 15px 0;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul {
+    list-style-position: inside;
+    text-align: left;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+a {
+    color: #d4af37;
+    text-decoration: none;
+}
+
+/* Rimosso a:hover */
+
+/* =========================
+   CONTENITORI GENERICI
+========================= */
+
+#loginContainer,
+#mainMenu,
+#ladderScreen,
+#docsScreen,
+#characterSelectionContainer,
+#end {
+    display: none;
+    background: #2a2a3e;
+    border: 3px solid #d4af37;
+    border-radius: 10px;
+    padding: 25px;
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.login-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+form {
+    width: 48%;
+    min-width: 250px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    background: #3d3d5c;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: #fff;
+}
+
+/* =========================
+   BOTTONI
+========================= */
+
+input[type="submit"],
+button {
+    padding: 8px 15px;
+    margin: 6px 4px;
+    background: #3d3d5c;
+    border: 2px solid #5a5a7a;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Rimosso button:hover */
+
+/* =========================
+   MENU
+========================= */
+
+.menu-buttons {
+    margin-top: 15px;
+}
+
+.menu-buttons button {
+    display: block;
+    width: 200px;
+    margin: 8px auto;
+}
+
+/* Bottoni Speciali */
+#logoutBtn {
+    background: #d9534f;
+    border-color: #c9302c;
+}
+
+#docsBtn {
+    background: #5bc0de;
+    border-color: #46b8da;
+}
+
+#openFullDocs {
+    background: #5bc0de;
+    border-color: #46b8da;
+}
+
+/* Rimossi hover specifici */
+
+/* =========================
+   SELEZIONE PERSONAGGIO
+========================= */
+
+#characterSelection {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+    
+    /* Gestione Altezza e Scroll */
+    max-height: 50vh; 
+    overflow-y: auto; 
+    padding: 5px;     
+    border: 1px solid #444; 
+}
+
+.charCard {
+    background: #3d3d5c;
+    border: 3px solid transparent; /* Invisibile finché non selezionato */
+    border-radius: 8px;
+    padding: 15px;
+    width: 180px;
+    cursor: pointer;
+}
+
+/* Rimosso .charCard:hover */
+
+/* Questo si attiva SOLO al click tramite JS */
+.selectedCard {
+    border-color: #d4af37;
+    background-color: #4a4a6a; /* Leggermente più chiaro per evidenziare */
+}
+
+.charCard img {
+    width: 64px;
+    height: 64px;
+}
+
+.charCard h3 {
+    font-size: 1.1rem;
+    margin: 10px 0 5px 0;
+}
+
+.charCard p {
+    font-size: 0.85rem;
+    color: #b8b8b8;
+    margin: 5px 0;
+}
+
+/* =========================
+   GAME CONTAINER
+========================= */
+
+#contenitore {
+    display: none;
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    border: 3px solid #d4af37;
+    background: #000;
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+}
+
+/* =========================
+   UI LAYER
+========================= */
+
+#UI {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#UI > * {
+    pointer-events: auto;
+}
+
+#playerData {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(30,30,40,0.95);
+    border: 2px solid #d4af37;
+    padding: 10px;
+    font-size: 13px;
+    text-align: left;
+    display: none;
+}
+
+#coins {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+#levelUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2a2a3e;
+    border: 3px solid #ffd700;
+    padding: 20px;
+    display: none;
+}
+
+#levelUp button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+}
+
+/* =========================
+   CLASSIFICA
+========================= */
+
+#ladderContainer {
+    margin: 15px 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#ladderContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1f1f2f;
+    border: 2px solid #d4af37;
+}
+
+#ladderContainer th {
+    background: #2f2f4a;
+    color: #d4af37;
+    padding: 8px;
+    border-bottom: 2px solid #d4af37;
+    font-weight: bold;
+}
+
+#ladderContainer td {
+    padding: 8px;
+    border-bottom: 1px solid #444;
+}
+
+.activeSort {
+    background-color: rgba(255, 215, 0, 0.15); 
+    border-bottom: 2px solid gold; 
+    font-weight: bold;
+    color: #ffd700; 
+}
+
+/* =========================
+   GAME OVER
+========================= */
+
+#statsSummary {
+    margin: 15px 0;
+}
+
+#endStats {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#endStats td {
+    border: 1px solid #555;
+    padding: 6px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+#gameFooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1a1a2e;
+    border-top: 2px solid #d4af37;
+    padding: 10px;
+    font-size: 12px;
+    color: #888;
+    z-index: 100;
+}
+
+#gameFooter strong {
+    color: #d4af37;
+}
